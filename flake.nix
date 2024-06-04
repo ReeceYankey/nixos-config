@@ -3,10 +3,6 @@
   description = "My first flake";
 
   inputs = {
-    #nixpkgs = {
-    #  url = "github:NixOS/nixpkgs/nixos-23.11"
-    #};
-    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11"
     nixpkgs.url = "nixpkgs/nixos-23.11";
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -22,7 +18,7 @@
         timezone = "America/New_York"; # select timezone
         locale = "en_US.UTF-8"; # select locale
       };
-      pkgs = nixpkgs.legacyPackages.${systemSettings.system};
+      pkgs = nixpkgs.legacyPackages.${systemSettings.system}; # passed to homeConfigurations; legacyPackages is to prevent duplication of nixpkgs since compiler is dumb https://discourse.nixos.org/t/using-nixpkgs-legacypackages-system-vs-import/17462/12
       userSettings = {
         username = "ryankey";
         name = "Reece";
