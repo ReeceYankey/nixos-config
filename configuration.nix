@@ -84,10 +84,6 @@
     isNormalUser = true;
     description = userSettings.name;
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kate
-    #  thunderbird
-    ];
   };
 
   # Enable automatic login for the user.
