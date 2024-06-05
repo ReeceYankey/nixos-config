@@ -1,10 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, systemSettings, userSettings, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "ryankey";
-  home.homeDirectory = "/home/ryankey";
+  home.username = userSettings.username;
+  home.homeDirectory = "/home/${userSettings.username}";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -63,8 +63,40 @@
   #  /etc/profiles/per-user/ryankey/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "vim";
   };
+
+  #programs.zsh = {
+  #  enable = true;
+  #  syntaxHighlighting.enable = true;
+  #  historySubstringSearch.enable = true;
+  #  autosuggestion.enable = true;
+  #  #oh-my-zsh = {
+  #  #  enable = true;
+  #  #  theme = "powerlevel10k";
+  #  #  plugins = [ 
+  #  #    "git" "zsh-autosuggestions" "dirhistory" "command-not-found" "zsh-syntax-highlighting" "zsh-history-substring-search"
+  #  #  ];
+  #  #};
+  #};
+  programs.zsh = {
+  enable = true;
+  enableCompletion = true;
+  autosuggestion.enable = true;
+  syntaxHighlighting.enable = true;
+
+  shellAliases = {
+    ll = "ls -l";
+    update = "sudo nixos-rebuild switch";
+  };
+  history = {
+    size = 10000;
+    path = "${config.xdg.dataHome}/zsh/history";
+  };
+
+};
+
+  
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

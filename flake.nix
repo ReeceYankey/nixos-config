@@ -3,12 +3,12 @@
   description = "My first flake";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-23.11";
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs.url = "nixpkgs/nixos-24.05";
+    #home-manager.url = "github:nix-community/home-manager/release-24.05";
+    #home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }:
+  outputs = { self, nixpkgs, ... }:
     let
       lib = nixpkgs.lib;
       pkgs = nixpkgs.legacyPackages.${systemSettings.system}; # passed to homeConfigurations; legacyPackages is to prevent duplication of nixpkgs since compiler is dumb https://discourse.nixos.org/t/using-nixpkgs-legacypackages-system-vs-import/17462/12
@@ -35,16 +35,16 @@
           };
         };
       };
-      homeConfigurations = {
-        ${userSettings.username} = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [ ./home.nix ];
-          extraSpecialArgs = {
-            inherit systemSettings;
-            inherit userSettings;
-          };
-        };
-      };
+      #homeConfigurations = {
+      #  ${userSettings.username} = home-manager.lib.homeManagerConfiguration {
+      #    inherit pkgs;
+      #    modules = [ ./home.nix ];
+      #    extraSpecialArgs = {
+      #      inherit systemSettings;
+      #      inherit userSettings;
+      #    };
+      #  };
+      #};
     };
 
 }
