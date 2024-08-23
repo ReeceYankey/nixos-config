@@ -14,7 +14,7 @@
       pkgs = nixpkgs.legacyPackages.${systemSettings.system}; # passed to homeConfigurations; legacyPackages is to prevent duplication of nixpkgs since compiler is dumb https://discourse.nixos.org/t/using-nixpkgs-legacypackages-system-vs-import/17462/12
       systemSettings = {
         system = "x86_64-linux"; # system arch
-        hostname = "nixos-test"; # hostname
+        hostname = "nixos"; # hostname
         profile = "personal"; # select a profile defined from my profiles directory
         timezone = "America/New_York"; # select timezone
         locale = "en_US.UTF-8"; # select locale
